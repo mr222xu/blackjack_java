@@ -1,16 +1,18 @@
 package BlackJack.model;
 
-import java.util.List;
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 
 public class Player {
 
   private List<Card> m_hand;
   protected final int g_maxScore = 21;
+  private Set<IObserver> m_observers = new HashSet<IObserver>();
 
   public Player()
   {
-  
     m_hand = new LinkedList<Card>();
     System.out.println("Hello List World");
   }
@@ -18,6 +20,9 @@ public class Player {
   public void DealCard(Card a_addToHand)
   {
     m_hand.add(a_addToHand);
+	
+    for (IObserver o : m_observers)
+	  o.Update(this);
   }
   
   public Iterable<Card> GetHand()
@@ -36,6 +41,15 @@ public class Player {
     {
       c.Show(true);
     }
+  }
+  
+  public boolean GotAce()
+  {
+    for (Card c : m_hand)
+      if (c.GetValue() == Card.Value.Ace)
+        return true;
+      
+    return false;
   }
   
   public int CalcScore()
@@ -70,5 +84,9 @@ public class Player {
     }
 
     return score;
+  }
+  
+  public void AddObserver(IObserver a_observer) {
+	  m_observers.add(a_observer);
   }
 }

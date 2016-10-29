@@ -1,28 +1,42 @@
 package BlackJack.view;
 
-public class SwedishView implements IView 
-    {
+import java.util.HashMap;
+import java.util.Map;
+
+public class SwedishView implements IView {
+		
+		private final Map<Integer, Input> input = new HashMap<Integer, Input>() {{
+			put((int) 'p', Input.NEW_GAME);
+			put((int) 'n', Input.HIT);
+			put((int) 's', Input.STAND);
+			put((int) 'a', Input.QUIT);
+		}};
+		
+		public void DisplayClearScreen() {
+			for(int i = 0; i < 50; i++) {System.out.print("\n");}; 
+		}
+	
         public void DisplayWelcomeMessage()
         {
          
-            for(int i = 0; i < 50; i++) {System.out.print("\n");};
+        	DisplayClearScreen();
 
             System.out.println("Hej Black Jack Världen");
             System.out.println("----------------------");
-            System.out.println("Skriv 'p' för att Spela, 'h' för nytt kort, 's' för att stanna 'q' för att avsluta\n");
+            System.out.println("Skriv 'p' för att Spela, 'n' för nytt kort, 's' för att stanna 'a' för att avsluta\n");
         }
         
-        public int GetInput()
+        public Input GetInput()
         {
           try {
             int c = System.in.read();
             while (c == '\r' || c =='\n') {
               c = System.in.read();
             }
-            return c;
+            return input.getOrDefault(c, Input.UNKNOWN);
           } catch (java.io.IOException e) {
             System.out.println("" + e);
-            return 0;
+            return Input.UNKNOWN;
           }
         }
         

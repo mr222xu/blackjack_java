@@ -34,8 +34,7 @@ public class Game {
   
   public boolean Stand()
   {
-    // TODO: Implement this according to Game_Stand.sequencediagram
-    return true;
+    return m_dealer.Stand();
   }
   
   public Iterable<Card> GetDealerHand()
@@ -57,6 +56,10 @@ public class Game {
   {
     return m_player.CalcScore();
   }
-    
   
+  public void AddObserver(IObserver a_observer)
+  {
+    m_dealer.AddObserver(a_observer);
+    m_player.AddObserver(a_observer);
+  }
 }
