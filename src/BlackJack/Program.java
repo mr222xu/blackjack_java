@@ -5,14 +5,14 @@ import BlackJack.model.Game;
 import BlackJack.model.rules.BasicAmericanDealerWinsRulesFactory;
 import BlackJack.model.rules.IAbstractRulesFactory;
 import BlackJack.view.IView;
-import BlackJack.view.SimpleView;
+import BlackJack.view.SwingView;
 
 public class Program
 {
 
   public static void main(String[] a_args)
   {
-	IView v = new SimpleView(); //new SwedishView();
+	IView v = new SwingView(); //new SwedishView();
 	IAbstractRulesFactory r = new BasicAmericanDealerWinsRulesFactory();
     Game g = new Game(r);
     r.accept(v); // Will print info about which rules are in use
