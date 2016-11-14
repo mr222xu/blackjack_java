@@ -3,9 +3,19 @@ package BlackJack.view;
 import java.util.HashMap;
 import java.util.Map;
 
+import BlackJack.model.rules.AmericanNewGameStrategy;
+import BlackJack.model.rules.BasicHitStrategy;
+import BlackJack.model.rules.DealerWinsOnEqualsWinStrategy;
+import BlackJack.model.rules.InternationalNewGameStrategy;
+import BlackJack.model.rules.PlayerWinsOnEqualsWinStrategy;
+import BlackJack.model.rules.Soft17HitStrategy;
+
 public class SwedishView implements IView {
 		
-		private final Map<Integer, Input> input = new HashMap<Integer, Input>() {{
+		private final Map<Integer, Input> input = new HashMap<Integer, Input>() {
+			private static final long serialVersionUID = -8345907602705447995L;
+
+		{
 			put((int) 'p', Input.NEW_GAME);
 			put((int) 'n', Input.HIT);
 			put((int) 's', Input.STAND);
@@ -86,4 +96,34 @@ public class SwedishView implements IView {
             System.out.println("Poäng: " + a_score);
             System.out.println("");
         }
+        
+    	@Override
+    	public void visit(AmericanNewGameStrategy a_newGameStrategy) {
+    		System.out.println("Nytt spel-strategi: " + a_newGameStrategy.getClass().getName());
+    	}
+
+    	@Override
+    	public void visit(BasicHitStrategy a_hitStrategy) {
+    		System.out.println("Hit-strategi: " + a_hitStrategy.getClass().getName());
+    	}
+
+    	@Override
+    	public void visit(DealerWinsOnEqualsWinStrategy a_winStrategy) {
+    		System.out.println("Vinnarstrategi: " + a_winStrategy.getClass().getName());
+    	}
+
+    	@Override
+    	public void visit(InternationalNewGameStrategy a_newGameStrategy) {
+    		System.out.println("Nytt spel-strategi: " + a_newGameStrategy.getClass().getName());
+    	}
+
+    	@Override
+    	public void visit(PlayerWinsOnEqualsWinStrategy a_winStrategy) {
+    		System.out.println("Vinnarstrategi: " + a_winStrategy.getClass().getName());
+    	}
+
+    	@Override
+    	public void visit(Soft17HitStrategy a_hitStrategy) {
+    		System.out.println("Hit-strategi: " + a_hitStrategy.getClass().getName());
+    	}
     }

@@ -1,6 +1,8 @@
 package BlackJack.view;
 
-public interface IView
+import BlackJack.model.rules.IVisitor;
+
+public interface IView extends IVisitor
 {	
 	void DisplayWelcomeMessage();
 	void DisplayClearScreen();

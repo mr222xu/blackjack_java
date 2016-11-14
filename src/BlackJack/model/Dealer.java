@@ -1,12 +1,9 @@
 package BlackJack.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
+import BlackJack.model.rules.IAbstractRulesFactory;
 import BlackJack.model.rules.IHitStrategy;
 import BlackJack.model.rules.INewGameStrategy;
 import BlackJack.model.rules.IWinStrategy;
-import BlackJack.model.rules.RulesFactory;
 
 public class Dealer extends Player {
 
@@ -16,7 +13,7 @@ public class Dealer extends Player {
   private IWinStrategy m_winRule;
 
 
-  public Dealer(RulesFactory a_rulesFactory) {
+  public Dealer(IAbstractRulesFactory a_rulesFactory) {
   
     m_newGameRule = a_rulesFactory.GetNewGameRule();
     m_hitRule = a_rulesFactory.GetHitRule();

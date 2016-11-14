@@ -10,4 +10,9 @@ public class Soft17HitStrategy implements IHitStrategy {
     	return (a_dealer.CalcScore() < g_hitLimit) ||
     			(a_dealer.CalcScore() == g_hitLimit && a_dealer.GotAce());  
     }
+
+	@Override
+	public void accept(IVisitor a_visitor) {
+		a_visitor.visit(this);
+	}
 }

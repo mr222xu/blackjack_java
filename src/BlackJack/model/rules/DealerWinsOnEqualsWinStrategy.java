@@ -16,4 +16,8 @@ public class DealerWinsOnEqualsWinStrategy implements IWinStrategy {
 		return a_dealer.CalcScore() >= a_player.CalcScore();
 	}
 
+	@Override
+	public void accept(IVisitor a_visitor) {
+		a_visitor.visit(this);
+	}
 }

@@ -3,10 +3,19 @@ package BlackJack.view;
 import java.util.HashMap;
 import java.util.Map;
 
+import BlackJack.model.rules.AmericanNewGameStrategy;
+import BlackJack.model.rules.BasicHitStrategy;
+import BlackJack.model.rules.DealerWinsOnEqualsWinStrategy;
+import BlackJack.model.rules.InternationalNewGameStrategy;
+import BlackJack.model.rules.PlayerWinsOnEqualsWinStrategy;
+import BlackJack.model.rules.Soft17HitStrategy;
+
 public class SimpleView implements IView 
 {
 	
-	private final Map<Integer, Input> input = new HashMap<Integer, Input>() {{
+	private final Map<Integer, Input> input = new HashMap<Integer, Input>() {
+		private static final long serialVersionUID = -4490434694175967436L;
+	{
 		put((int) 'p', Input.NEW_GAME);
 		put((int) 'h', Input.HIT);
 		put((int) 's', Input.STAND);
@@ -77,4 +86,34 @@ public class SimpleView implements IView
             }
             
         }
+        
+    	@Override
+    	public void visit(AmericanNewGameStrategy a_newGameStrategy) {
+    		System.out.println("Using new game strategy: " + a_newGameStrategy.getClass().getName());
+    	}
+
+    	@Override
+    	public void visit(BasicHitStrategy a_hitStrategy) {
+    		System.out.println("Using hit strategy: " + a_hitStrategy.getClass().getName());
+    	}
+
+    	@Override
+    	public void visit(DealerWinsOnEqualsWinStrategy a_winStrategy) {
+    		System.out.println("Using win strategy: " + a_winStrategy.getClass().getName());
+    	}
+
+    	@Override
+    	public void visit(InternationalNewGameStrategy a_newGameStrategy) {
+    		System.out.println("Using new game strategy: " + a_newGameStrategy.getClass().getName());
+    	}
+
+    	@Override
+    	public void visit(PlayerWinsOnEqualsWinStrategy a_winStrategy) {
+    		System.out.println("Using win strategy: " + a_winStrategy.getClass().getName());
+    	}
+
+    	@Override
+    	public void visit(Soft17HitStrategy a_hitStrategy) {
+    		System.out.println("Using hit strategy: " + a_hitStrategy.getClass().getName());
+    	}
     }

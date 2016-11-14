@@ -3,7 +3,7 @@ package BlackJack.model.rules;
 import BlackJack.model.Dealer;
 import BlackJack.model.Player;  
 
-class InternationalNewGameStrategy implements INewGameStrategy {
+public class InternationalNewGameStrategy implements INewGameStrategy {
 
   @Override
   public boolean NewGame(Dealer a_dealer, Player a_player) {
@@ -13,4 +13,9 @@ class InternationalNewGameStrategy implements INewGameStrategy {
   
     return true;
   }
+
+	@Override
+	public void accept(IVisitor a_visitor) {
+		a_visitor.visit(this);
+	}
 }
